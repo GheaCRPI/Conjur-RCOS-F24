@@ -42,9 +42,9 @@ Running this file with ./convert_to_lf.sh "$(pwd)" did change all the line endin
 Attempt 4: git clone https://github.com/GheaCRPI/Conjur-RCOS-F24.git
 Recloning the repository using the command line instead of github desktop seemed to resolve the issue
 
-After I fixed this, I ran into another issue regarding ruby I think, this was fixed in meeting 4.
+After I fixed this, I ran into another issue regarding ruby I think, this was fixed in meeting 3.
 
-### Meeting 4
+### Meeting 3
 I do not remember the issue I initially fixed however, I got conjur built during this meeting and was able to set up the conjur environment. We began attempting to debug and downloaded Ruby LSP.
 
 Attempted to learn to debug with VSCode, created a launch.json file in the .vscode folder 
@@ -64,9 +64,30 @@ Attempted to learn to debug with VSCode, created a launch.json file in the .vsco
 
 It didn't work.
 
-### Meeting 5
+### Meeting 4
 Helped Brian reclone the directory using the command line, got it built on his laptop. Attempted to start it however it kept timing out because it took too long. Tried running it on a VM but it didn't work either. (problem was later resolved by increasing the time allowed to run the program)
 
 Continued trying to debug
 - VSCode now cannot find RubyLSP
 - I can't start RubyLSP for some reason now
+
+### Meeting 5
+Trying to fix Ruby LSP issues. We ran into a lot of issues regarding the version conflicts and were manually editing the GEM file to resolve these conflicts. We ran into a thing something that said PostgresSql  needed to be installed which took 20 minutes to install.
+
+#### Between Meeting 5 and 6
+I created a new branch for fix-warnings that was intended to pull down to the original branch for the next release of Conjur. During this I learned how to rebase commits into a single commit. I also had to configure my username and email and used a hidden email using a personal acces token. I also added a signoff message to my commit. 
+- git config user.name "FirstName LastName"
+- git config user.email "#######+GithubUsername@users.noreply.github.com"
+- git rebase -i HEAD~2
+- use PAT for the password
+- git commit --amend --no-edit --signoff
+- git push -f
+
+### Meeting 6
+We tried rebuilding Conjur using Git Bash instead of WSL. It worked for Brian but not me and I ran into an error that I was running into when we first tried building it. 
+Error: /usr/bin/env: ‘ruby’: no such file or directory
+We tried recloning it again into a seperate directory but now my git is messed up due to me having two instances of the repository on my desktop.
+Running it with git bash cause conjur to time out after 90s, similar to how Brian's was taking too long a few weeks ago.
+
+
+

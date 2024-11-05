@@ -89,5 +89,11 @@ Error: /usr/bin/env: ‘ruby’: no such file or directory
 We tried recloning it again into a seperate directory but now my git is messed up due to me having two instances of the repository on my desktop.
 Running it with git bash cause conjur to time out after 90s, similar to how Brian's was taking too long a few weeks ago.
 
+### Meeting 7
+We talked about beginning to write test case and discussed possibly writing test cases on Summon. We discussed how Summon is used for pulling secrets from Conjur, and how to check what parts of the code are lacking unit tests. We can edit documentation for how Summon is used for Conjur and possibly edit the markdown file describing how to download Summon for windows. 
 
+To run test cases:
+- ./test_unit
+- go tool cover -html=output/c.out
 
+3 stages to tests: setup, action calling the function, checking if output was expected

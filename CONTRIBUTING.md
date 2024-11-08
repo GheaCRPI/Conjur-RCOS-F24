@@ -74,9 +74,8 @@ Follow this [link](https://github.com/cyberark/community/blob/master/Conjur/conv
 It's easy to get started with Conjur and Docker:
 
 1. Install dependencies (as above)
-1. Clone this repository (on Windows use WSL to ensure line endings remain lf, github 
-desktop will change line endings)
-1. Run the build script in your terminal:
+1. Clone this repository (on Windows use command line to ensure line endings remain lf, github desktop will change line endings)
+1. Run the build script in your terminal (bash):
 
    ```sh-session
    $ ./build.sh
@@ -118,6 +117,10 @@ To use it:
    * Account: `cucumber`
    * User: `admin`
    * Password: Run `conjurctl role retrieve-key cucumber:user:admin` inside the container shell to retrieve the admin user API key (which is also the password)
+
+   If ./start takes too long to run, "error: Conjur is not ready after 90 seconds" may appear. To resolve this issue run 
+   ```conjurctl wait -r 300```
+   to increase allotted run time
 
 1. Run the server
 

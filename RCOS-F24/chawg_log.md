@@ -97,3 +97,8 @@ To run test cases:
 - go tool cover -html=output/c.out
 
 3 stages to tests: setup, action calling the function, checking if output was expected
+
+In between meeting 7 and 8, I got summon downloaded successfully and began looking at the test cases. I figured out how to run thme on my own, and figured out which files correlated to what and began looking into writing my own. Also downloaded keyring for summon to use, however did not fully get that downloaded. Learned that Conjur is a provider for Summon, along with keyring.
+
+### Meeting 8
+Discussed the different parts of the test cases, and found out how to run and debug individual tests using Go. Also resolved my issue with keyring and got that properly downloaded. I plan on completing writing at least one unit test by the next meeting.

@@ -102,3 +102,8 @@ In between meeting 7 and 8, I got summon downloaded successfully and began looki
 
 ### Meeting 8
 Discussed the different parts of the test cases, and found out how to run and debug individual tests using Go. Also resolved my issue with keyring and got that properly downloaded. I plan on completing writing at least one unit test by the next meeting.
+
+### Meeting 9
+I met with Shlomo alone because Brian was busy, but he talked about how he had to reinstall Ruby LSP on a new laptop and things he did to fix the errors that he encountered. He said he resolved them by downloading Ruby rvm, or a ruby version manager because a lot of the issues I ran into while working with Ruby LSP were version issues so this might be a possible fix for the issue. He documented the changes and marked me as a co-author because we were trying to fix the error earlier in the semester. He also helped clarify how certain parts of Go worked. 
+
+Additionally, this week a new update of Conjur came out, and both my commits were in it!

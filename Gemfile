@@ -18,6 +18,7 @@ gem 'command_class'
 gem 'http', '~> 4.2.0'
 gem 'iso8601'
 gem 'jbuilder', '~> 2.7.0'
+gem 'mustache'
 gem 'nokogiri', '>= 1.8.2'
 gem 'puma', '~> 6', '>= 6.4.2'
 gem 'rack', '~> 2.2', '>= 2.2.8.1'
@@ -35,7 +36,7 @@ gem 'base32-crockford'
 gem 'bcrypt'
 gem 'gli', require: false
 gem 'listen'
-gem 'rexml', '~> 3.2'
+gem 'rexml', '~> 3.3.9'
 gem 'slosilo', '~> 3.0'
 
 # Explicitly required as there are vulnerabilities in older versions
@@ -94,8 +95,9 @@ group :development, :test do
   gem 'database_cleaner', '~> 1.8'
   gem 'debase', '~> 0.2.5.beta2'
   gem 'debase-ruby_core_source', '~> 3.3'
-  gem 'json_spec', '~> 1.1'
+  gem 'debug' # For VSCode debugging
   gem 'faye-websocket'
+  gem 'json_spec', '~> 1.1'
   gem 'net-ssh'
   gem 'parallel'
   gem 'parallel_tests'
@@ -107,7 +109,6 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-core'
   gem 'rspec-rails'
-  gem 'ruby-debug-ide'
 
   # We use a post-coverage hook to sleep covered processes until we're ready to
   # collect the coverage reports in CI. Because of this, we don't want bundler
@@ -125,7 +126,7 @@ end
 
 group :development do
   # NOTE: minor version of this needs to match codeclimate channel
-  gem 'rubocop', '~> 0.58.0', require: false
+  gem 'rubocop', '>= 1.4.0', require: false
 
   gem 'reek', require: false
   gem 'rubocop-checkstyle_formatter', require: false # for Jenkins

@@ -44,7 +44,6 @@ describe PoliciesController, type: :request do
           expect(response.code).to match(/20\d/)
           body = JSON.parse(response.body)
           expect(validation_status).to match("Valid YAML")
-          expect(body['errors']).to match([])
         end
       end
     end

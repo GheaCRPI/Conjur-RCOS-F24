@@ -9,6 +9,38 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Nothing should go in this section, please add to the latest unreleased version
   (and update the corresponding date), or add a new version.
 
+## [1.21.2] - 2024-11-20
+
+### Changed
+- Replaces ERB template engine with Mustache when rendering Factory templates
+  CNJR-6700
+- Modifies the REST API response of a Policy load command, when called with the
+  `dryRun` parameter, to report policy attributes that would be created by the 
+  submitted policy.
+  CNJR-6999
+- Modifies the REST API response of a Policy load command, when called with the
+  `dryRun` parameter, to report policy attributes that would be updated by the 
+  submitted policy.
+  CNJR-6109
+- Modifies the REST API response of a Policy load command, when called with the
+  `dryRun` parameter, to report policy attributes that would be deleted by the 
+  submitted policy.
+  CNJR-6108
+
+### Fixed
+- Updates audit events generated during Policy Factory usage.
+  CNJR-6891
+
+### Fixed
+- Updates OIDC Authenticator to use the scope defined in configuration.
+  CNJR-6393
+- Failed authentication requests now return without a body, only an error code.
+  ONYX-60466
+- Fixed the ability to define Auth Token TTL in the configuration.
+  CNJR-6388
+- Update webrick to 1.8.2 to resolve CVE-2024-47220.
+  CONJSE-1907
+
 ## [1.21.1] - 2024-06-03
 
 ### Added
@@ -22,6 +54,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   CNJR-2040
 - Ensure logging of all HTTP status codes during authentication.
   CNJR-232
+- Adds the Policy Syntax Validation feature, an option of the Policy REST API enabled when new query parameter
+  `dryRun` is true, that will only validate the syntax of a provided policy instead of loading it.
+  CNJR-3433
 
 ### Fixed
 - Dedicated user identifier resolver allowing the user identifiers work like any other resource id. The Conjur internal
@@ -1224,7 +1259,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - The first tagged version.
 
-[Unreleased]: https://github.com/cyberark/conjur/compare/v1.20.2...HEAD
+[Unreleased]: https://github.com/cyberark/conjur/compare/v1.21.2...HEAD
+[1.21.2]: https://github.com/cyberark/conjur/compare/v1.21.1...v1.21.2
+[1.21.1]: https://github.com/cyberark/conjur/compare/v1.21.0...v1.21.1
+[1.21.0]: https://github.com/cyberark/conjur/compare/v1.20.4...v1.21.0
+[1.20.4]: https://github.com/cyberark/conjur/compare/v1.20.3...v1.20.4
+[1.20.3]: https://github.com/cyberark/conjur/compare/v1.20.2...v1.20.3
 [1.20.2]: https://github.com/cyberark/conjur/compare/v1.20.1...v1.20.2
 [1.20.1]: https://github.com/cyberark/conjur/compare/v1.20.0...v1.20.1
 [1.20.0]: https://github.com/cyberark/conjur/compare/v1.19.5...v1.20.0

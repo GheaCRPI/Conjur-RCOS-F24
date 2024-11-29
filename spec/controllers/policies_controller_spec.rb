@@ -174,10 +174,13 @@ describe PoliciesController, type: :request do
       end
 
       it "validates the policy without changing data" do
+        allow(Audit.logger).to receive(:log)
+
         validate_policy(policy: good_policy)
         expect(response.status).to eq(200)
         expect(user('alice')).not_to be
         expect(user('bob')).not_to be
+        expect(Audit.logger).to have_received(:log)
       end
 
       it "rolls back a valid dry-run policy (existing version does not change)" do
@@ -242,12 +245,15 @@ describe PoliciesController, type: :request do
       end
 
       it "returns error, including advice" do
+        allow(Audit.logger).to receive(:log)
+    
         validate_policy(policy: policy_with_missing_colon)
         expect(response.status).to eq(422)
         msg = "could not find expected ':' while scanning a simple key"
         advice = "This error can occur when you have a missing ':' or missing space after ':'"
         expect(error_msg_for_validate(response)).to include(msg)
-        # expect(advice_msg_for_validate(response)).to include(advice)
+        expect(advice_msg_for_validate(response)).to include(advice)
+        expect(Audit.logger).to have_received(:log)
       end
     end
 
@@ -270,6 +276,34 @@ describe PoliciesController, type: :request do
         expect(error_msg_for_validate(response)).to include(msg)
         # expect(advice_msg_for_validate(response)).to include(advice)
       end
+    end
+  end
+
+  context 'when a policy is loaded on a read-only database replica' do
+    let(:mock_policy_version) { instance_double('PolicyVersion') }
+    let(:permission_error) { PG::InsufficientPrivilege.new('ERROR: permission denied for table policy_versions') }
+    let(:evaluate_policy) { instance_double('Proc') }
+
+    before do
+      allow(PolicyVersion).to receive(:new).and_return(mock_policy_version)
+      allow(mock_policy_version).to receive(:delete_permitted=).with(false)
+      allow(mock_policy_version).to receive(:save).and_raise(permission_error)
+      allow(evaluate_policy).to receive(:call).with(Loader::Orchestrate)
+    end
+
+    it 'returns an HTTP 405' do
+      apply_policy(
+        action: :post,
+        policy: <<~TEMPLATE
+                  - !user charlie
+                TEMPLATE
+      )
+
+      expect(PolicyVersion).to have_received(:new)
+      expect(mock_policy_version).to have_received(:save)
+      expect(response).to have_http_status(405)
+      expect(response.body).to include('Write operations are not allowed')
+      expect(evaluate_policy).not_to have_received(:call).with(Loader::Orchestrate)
     end
   end
 end

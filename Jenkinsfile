@@ -133,6 +133,10 @@ if (params.MODE == "PROMOTE") {
       summon -f ./secrets.yml ./publish-manifest.sh --promote --dockerhub --base-version=${sourceVersion} --version=${targetVersion}
     """
 
+    // Ensure the working directory is a safe git directory for the subsequent
+    // promotion operations after this block.
+    sh 'git config --global --add safe.directory "$(pwd)"'
+
     build(
       job: 'Conjur-Enterprise/Conjur-Enterprise-conjurops/main/Conjur-Enterprise-conjurops-main-full/master',
       parameters:[
@@ -1169,7 +1173,7 @@ pipeline {
         script {
           release(INFRAPOOL_EXECUTORV2_AGENT_0) { billOfMaterialsDirectory, assetDirectory ->
             // Publish docker images
-            INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './publish-images.sh --edge --dockerhub'
+            INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './publish-images.sh --edge'
             INFRAPOOL_EXECUTORV2ARM_AGENT_0.agentSh './publish-images.sh --edge --arch=arm64'
             INFRAPOOL_EXECUTORV2_AGENT_0.agentSh './publish-manifest.sh --edge'
 

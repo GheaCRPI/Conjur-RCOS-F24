@@ -13,6 +13,8 @@ When starting Conjur with Git Bash, if the error `/usr/bin/env: ‘ruby’: no s
 
 ### Conjur Timing Out
 While starting a Conjur environment, the error `error: Conjur not ready after 90 seconds` might be encountered. This error can sometimes be cautiously ignored by changing the alloted build time for conjur. This can be done by using `conjurctl wait -r 300 ` to change the wait time to 300 seconds. The number 300 can be substituted for the amount of time you are willing to allow conjur to build for.
-* Issue with Ruby LSP not being fetched while trying to start the platform
+
+### VSCode Debugging
+Ensuring that Ruby Version Manager (RVM) is installed will help simplify the debugging process. Running RubyLSP without RVM may lead to may version conflict errors appearing. 
 
 

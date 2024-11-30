@@ -107,3 +107,8 @@ Discussed the different parts of the test cases, and found out how to run and de
 I met with Shlomo alone because Brian was busy, but he talked about how he had to reinstall Ruby LSP on a new laptop and things he did to fix the errors that he encountered. He said he resolved them by downloading Ruby rvm, or a ruby version manager because a lot of the issues I ran into while working with Ruby LSP were version issues so this might be a possible fix for the issue. He documented the changes and marked me as a co-author because we were trying to fix the error earlier in the semester. He also helped clarify how certain parts of Go worked. 
 
 Additionally, this week a new update of Conjur came out, and both my commits were in it!
+
+### Friday November 29
+I got VSCode debugging functioning, and the Debugger says connected in the conjur environment. The process went way smoother than it did on my Windows laptop, I think this is because I used a Mac this time due to breaking my other laptop. It still says that there is a version issue, however in the terminal it says "DEBUGGER CONNECTED" which I am considering a success considering before it would spit out many errors and wouldn't ever get to that stage.
+
+I've discovered that the Conjur installation process is way simpler on a Mac and also a lot more cooperative.
